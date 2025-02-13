@@ -4,11 +4,26 @@ import Task from "./Task";
 import { IoIosAdd } from "react-icons/io";
 
 const TaskList = ({ tasks, onClick, onRemove, onAdd }) => {
+  const [isValue, setIsValue] = useState("");
+
   return (
     <>
       <div className="">
-        <input type="text" value={tasks.title} placeholder="название задачи" />
-        <IoIosAdd size={40} className="add-task" onClick={() => onAdd(title)} />
+        <input
+          type="text"
+          value={tasks.title}
+          placeholder="название задачи"
+          onChange={(e) => {
+            setIsValue(e.target.value);
+            console.log(isValue);
+          }}
+        />
+        {/* value={isValue} */}
+        <IoIosAdd
+          size={40}
+          className="add-task"
+          onClick={() => onAdd(isValue)}
+        />
       </div>
 
       {tasks.map((task) => (
