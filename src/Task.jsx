@@ -4,19 +4,19 @@ import { CiTrash } from "react-icons/ci";
 const Task = ({ id, title, isCompleted, onClick, onRemove }) => {
   return (
     <>
-      <div className="task-block">
+      <div className="w-full rounded-lg border border-gray-200 flex items-center justify-between p-4">
         {id}
         <input
+          className="mr-2 w-6 h-6 rounded-lg"
           type="checkbox"
           checked={isCompleted}
           onChange={() => onClick(id)}
         />
-        {title}
-        {/* <button onClick={() => onRemove(id)}>удалить </button> */}
+        <span className="flex-grow">{title}</span>
         <CiTrash
+          className="cursor-pointer"
           size={30}
           onClick={() => onRemove(id)}
-          style={{ cursor: "pointer" }}
         />
       </div>
     </>
