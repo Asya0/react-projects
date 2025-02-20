@@ -4,50 +4,11 @@
 @tailwind utilities;
 
 #root {
-  /* max-width: 1280px; */
   margin: 0 auto;
-  /* padding: 2rem; */
   text-align: center;
 }
 body {
   background-color: #4c93af;
-}
-
-/* Основной контейнер */
-.container {
-  display: flex;
-  flex-direction: column;
-}
-div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  /* background-color: #9e5252; */
-}
-.header {
-  display: flex;
-  align-items: center;
-}
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.task-block {
-  border-radius: 10px;
-  border: white 1px solid;
-}
-
-/* Стиль для чекбокса */
-input[type="checkbox"] {
-  margin-right: 10px;
-  width: 25px;
-  height: 25px;
-  border-radius: 8px;
 }
 
 /* Стиль для кнопки удаления */
@@ -75,5 +36,4 @@ span {
   font-size: 16px;
   font-weight: bold;
   flex-grow: 1;
-  /* text-decoration: ${({ isCompleted }) => (isCompleted ? "line-through" : "none")}; */
 }
