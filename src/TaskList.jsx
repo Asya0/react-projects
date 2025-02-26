@@ -1,33 +1,16 @@
-import { useState, useEffect, React } from "react";
+import { IoIosAdd } from "react-icons/io";
 import Task from "./Task";
 
-import { IoIosAdd } from "react-icons/io";
-
-const TaskList = ({ tasks, onClick, onRemove, onAdd }) => {
-  const [isValue, setIsValue] = useState("");
-  const [taskList, setTaskList] = useState(tasks);
-
-  //загружаем задачи из localStorage при каждом измненении
-  useEffect(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    if (savedTasks) setTaskList(JSON.parse(savedTasks));
-  }, []);
-
-  //сохранение в localStorage при каждом изменении
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(taskList));
-  }, []);
-
-  const handleAddTask = () => {
-    if (isValue === "" || isValue.trim() === "") {
-      alert("введите название задачи");
-      setIsValue("");
-      return;
-    }
-    onAdd(isValue);
-    setIsValue("");
-  };
-
+const TaskList = ({
+  tasks,
+  onCheck,
+  onRemove,
+  onAdd,
+  onEdit,
+  isValue,
+  setIsValue,
+}) => {
+  console.log("Tasks in TaskList:", tasks);
   return (
     <>
       <div className="flex items-center justify-between mb-2.5 p-2.5 rounded-sm">
@@ -35,26 +18,25 @@ const TaskList = ({ tasks, onClick, onRemove, onAdd }) => {
           type="text"
           value={isValue}
           placeholder="название задачи"
-          onChange={(e) => {
-            setIsValue(e.target.value);
-            console.log(isValue);
-          }}
+          onChange={(e) => setIsValue(e.target.value)}
         />
-        <IoIosAdd size={40} className="" onClick={handleAddTask} />
+        <IoIosAdd size={40} onClick={() => onAdd(isValue)} />
       </div>
 
       {tasks.map((task) => (
         <Task
           key={task.id}
           id={task.id}
-          title={task.title}
-          isCompleted={task.isCompleted}
-          onClick={onClick}
+          {...task}
+          // title={task.title}
+          // isCompleted={task.isCompleted}
+          onCheck={onCheck}
           onRemove={onRemove}
-          onAdd={onAdd}
+          onEdit={onEdit}
         />
       ))}
     </>
   );
 };
+
 export default TaskList;
